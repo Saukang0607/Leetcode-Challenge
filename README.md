@@ -1,2 +1,2 @@
 # Leetcode-Challenge
-A sandbox where I practise (or play) DSA
+A sandbox where I practise (play) DSA
