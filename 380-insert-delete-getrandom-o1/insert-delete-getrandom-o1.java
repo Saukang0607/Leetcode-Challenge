@@ -20,7 +20,7 @@ class RandomizedSet {
         int loc = map.remove(val); //get the original index of removed element
         if(idx != loc)
             map.put(nums[idx], loc); //swap the last element to the removed element's index
-        nums[loc] = nums[idx--]; //update the array and idx
+        nums[loc] = nums[idx--]; 
         return true;
     }
 
