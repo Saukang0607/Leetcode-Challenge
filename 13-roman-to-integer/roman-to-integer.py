@@ -9,6 +9,7 @@ class Solution:
             else:
                 count += hashmap[s[0]]
                 s = s[1:]
+                
         if len(s) == 2 and hashmap[s[0]] < hashmap[s[1]]:
             count += hashmap[s[1]] - hashmap[s[0]]
         elif len(s) == 2:
