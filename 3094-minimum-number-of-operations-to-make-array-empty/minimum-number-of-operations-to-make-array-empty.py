@@ -3,7 +3,7 @@ class Solution:
         count = Counter(nums)
         ans = 0
         for x in count:
-            if count[x] >= 3:
+            if count[x] >= 3: #no matter remainder is 0, 1 or 2, minimum operations are same
                 ans += math.ceil(count[x]/ 3)
                 count[x] = 0
             elif count[x] == 2:
