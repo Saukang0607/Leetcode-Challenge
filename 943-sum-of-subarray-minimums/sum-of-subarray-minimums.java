@@ -4,7 +4,7 @@ class Solution {
         if (arr.length == 1) return arr[0];
         int left[] = new int[arr.length];
         int right[] = new int[arr.length];
-        ArrayDeque<Integer> stack = new ArrayDeque<Integer>(); //the higher the smaller
+        Stack<Integer> stack = new Stack<Integer>(); //the higher the smaller
 
         for(int i = 0; i < arr.length; i++){
             while(!stack.isEmpty() && arr[stack.peek()] > arr[i]) stack.pop();
