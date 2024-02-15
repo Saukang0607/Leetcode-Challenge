@@ -1,7 +1,7 @@
 class Solution {
     public long largestPerimeter(int[] nums) {
         Arrays.sort(nums);
-        long total = 0;
+        long total = 0; //cannot use integer here, will overflow
         for(int num: nums) total += num;
         for(int i = nums.length - 1; i >= 2; i--){
             if(total - 2 * nums[i] > 0) return total;
