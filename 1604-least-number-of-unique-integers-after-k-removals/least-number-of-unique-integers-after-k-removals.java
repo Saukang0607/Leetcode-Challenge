@@ -1,29 +1,33 @@
 class Solution {
     public int findLeastNumOfUniqueInts(int[] arr, int k) {
-        Map<Integer, Integer> countMap = new HashMap<>();
-        // ... populate the map
-        for (int num : arr) {
-            countMap.putIfAbsent(num, 0);
-            countMap.put(num, countMap.get(num) + 1);
+        // Map to track the frequencies of elements
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i : arr) {
+            map.put(i, map.getOrDefault(i, 0) + 1);
         }
-        System.out.println(countMap);
-        // Sort the HashMap by values in ascending order
-        Map<Integer, Integer> sortedMap = countMap.entrySet()
-                .stream()
-                .sorted(Map.Entry.comparingByValue())
-                .collect(LinkedHashMap::new, (map, entry) -> map.put(entry.getKey(), entry.getValue()),
-                        LinkedHashMap::putAll);
-        // You can now iterate over the sorted entries
-        System.out.println(countMap);
-        for (int key : new ArrayList<>(sortedMap.keySet())) {
-            if (k >= sortedMap.get(key)) {
-                k -= sortedMap.get(key);
-                sortedMap.remove(key);
-            } else {
-                break;
+
+        // Min heap to track all the frequencies
+        PriorityQueue<Integer> frequencies = new PriorityQueue<>(map.values());
+
+        // Tracking the number of elements removed
+        int elementsRemoved = 0;
+
+        // Traversing all frequencies
+        while (!frequencies.isEmpty()) {
+            // Removing the least frequent element
+            elementsRemoved += frequencies.peek();
+
+            // If the number of elements removed exceeds k, return
+            // the remaining number of unique elements
+            if (elementsRemoved > k) {
+                return frequencies.size();
             }
+            
+            frequencies.poll();
         }
-        System.out.println(countMap);
-        return sortedMap.size();
+
+        // We have removed all elements, so no unique integers remain
+        // Return 0 in this case
+        return 0;
     }
 }
