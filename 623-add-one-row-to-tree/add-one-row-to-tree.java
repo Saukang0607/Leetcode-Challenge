@@ -1,4 +1,4 @@
-/**
+/** solution two: BFS
  * Definition for a binary tree node.
  * public class TreeNode {
  *     int val;
@@ -14,27 +14,29 @@
  * }
  */
 class Solution {
-    int d, v; //ensure val and depth is visible
     public TreeNode addOneRow(TreeNode root, int val, int depth) {
-        d = depth; v = val;
-        if(depth == 1) return new TreeNode(val, root, null); //edge case: only one layer
-        int cur = 1;
-        dfs(root, cur);
+        Deque<TreeNode> deque = new ArrayDeque<>();
+        if(depth == 1) return new TreeNode(val, root, null);
+        deque.addLast(root);
+
+        int currentDepth = 1;
+        while(!deque.isEmpty()){
+            int size = deque.size();
+            while(size-- > 0){ //that layer still has tree node
+                TreeNode currentNode = deque.removeFirst();
+                if(currentDepth == depth - 1){
+                    TreeNode a = new TreeNode(val), b = new TreeNode(val);
+                    a.left = currentNode.left; b.right = currentNode.right;
+                    currentNode.left = a; currentNode.right = b;
+                }
+                else{
+                    if(currentNode.left != null )deque.add(currentNode.left); //child node of that node in particular layer
+                    if(currentNode.right != null) deque.add(currentNode.right);
+                }
+            }
+            currentDepth++;
+        }
+
         return root;
     }
-
-    void dfs(TreeNode root, int currentDepth){ 
-        if(root == null){ //reach leaf
-            return;
-        }
-        if(currentDepth == d - 1){
-            TreeNode a = new TreeNode(v); TreeNode b = new TreeNode(v);
-            a.left = root.left; b.right = root.right;
-            root.left = a; root.right = b;
-        }
-        else{
-            dfs(root.left, currentDepth + 1);
-            dfs(root.right, currentDepth + 1);
-        }
-    }   
 }
