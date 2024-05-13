@@ -18,8 +18,8 @@ class Solution {
 
         int score = 0;
         for (int i = 0; i < grid.length; i++) {
-            int rowValue = grid[i][0] == 1 ? (1 << (grid[0].length - 1)) : 0; // Most significant bit
-            for (int j = 1; j < grid[0].length; j++) {
+            int rowValue = 0;
+            for (int j = 0; j < grid[0].length; j++) {
                 rowValue += grid[i][j] * Math.pow(2, grid[0].length - j - 1);
             }
             score += rowValue;
