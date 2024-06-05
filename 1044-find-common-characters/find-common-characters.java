@@ -13,13 +13,13 @@ class Solution {
                 charCounter2[words[i].charAt(j) - 'a']++;
             }
 
-            for(int k = 0; k < 26; k++){ //character count for first string
-                charCounter[k] = Math.min(charCounter[k], charCounter2[k]); //preserve the minimum count of each character
+            for(int k = 0; k < 26; k++){ 
+                charCounter[k] = Math.min(charCounter[k], charCounter2[k]); //update the minimum count
             }
         }
 
-        for(int i = 0; i < 26; i++){ //character count for first string
-            while(charCounter[i] != 0){  //while loop is for adding duplicate characters
+        for(int i = 0; i < 26; i++){ //adding common characters
+            while(charCounter[i] != 0){ 
                 char c = (char) (i + 'a');
                 ans.add(c + "");
                 charCounter[i]--;
