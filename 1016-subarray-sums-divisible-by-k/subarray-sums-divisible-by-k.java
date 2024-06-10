@@ -8,7 +8,9 @@ class Solution {
         for(int i = 0; i < nums.length; i++){
             sum += nums[i];
             int modulus = (sum % k + k) % k;
-            ans += modulusCount[modulus];
+            // key point: (prefixSum[j] − prefixSum[i]) % k = 0 
+            //          => prefixSum[j] % k = prefixSum[i] % k
+            ans += modulusCount[modulus]; 
             modulusCount[modulus]++;
         }
         
