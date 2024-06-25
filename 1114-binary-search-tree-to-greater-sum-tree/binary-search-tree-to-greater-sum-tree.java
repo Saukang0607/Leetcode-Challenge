@@ -15,8 +15,9 @@
  */
 class Solution {
     int sumValue = 0;
-    public TreeNode bstToGst(TreeNode root) {
-        dfsRight(root.right);
+    public TreeNode bstToGst(TreeNode root) { //key point: right subtree's nodes are always greater than current node
+    //so we traverse through right subtree -> root -> left subtree while accumulating sumValue
+        dfsRight(root.right); 
         sumValue += root.val;
         root.val = sumValue;
         dfsRight(root.left);
