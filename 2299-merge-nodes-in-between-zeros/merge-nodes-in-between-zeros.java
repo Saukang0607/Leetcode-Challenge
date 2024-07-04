@@ -12,10 +12,10 @@ class Solution {
     public ListNode mergeNodes(ListNode head) {
         ListNode fast = head.next, slow = head;
         int sum = 0;
-        while(fast != null){
+        while(fast.next != null){ //while not last node
             if(fast.val == 0){
                 slow.val = sum;
-                if(fast.next != null) slow = slow.next;
+                slow = slow.next;
                 sum = 0;
             }
             else{
@@ -23,7 +23,10 @@ class Solution {
             }
             fast = fast.next;
         }
-        slow.next = null;
+        if(fast.val == 0){
+            slow.val = sum;
+            slow.next = null;
+        }
         return head;
     }
 }
