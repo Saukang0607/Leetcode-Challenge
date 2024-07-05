@@ -20,14 +20,14 @@ class Solution {
             (curr.val > prev && curr.val > curr.next.val)) { //critical point
                 if(prev_location != -1){
                     ans[0] = Math.min(ans[0], idx - prev_location);
-                    ans[1] = Math.max(ans[1], idx - first_location);
+                    ans[1] = idx - first_location;
                 }
 
                 if(is_first){
                     first_location = idx;
                     is_first = false;
                 }
-                
+
                 prev_location = idx; 
             }
             prev = curr.val;
