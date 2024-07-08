@@ -1,17 +1,18 @@
 class Solution {
     public int findTheWinner(int n, int k) {
-        boolean[] vis = new boolean[n + 10];
-        int cnt = 0, cur = 0;
-        while (cnt != n - 1) {
-            for (int j = 0; j < k - 1; j++) {
-                cur++;
-                while (vis[cur % n]) cur++;
+        boolean[] vis = new boolean[n];
+        int idx = 0;
+        for(int i = 1; i < n; i++){
+            for(int j = 1; j < k; j++){ //removing one loser
+                idx++;
+                while(vis[idx % n]) idx++; //skip the person ady lost
             }
-            vis[cur % n] = true;
-            cnt++; cur++;
-            while (vis[cur % n]) cur++;
+            vis[idx % n] = true;
+            idx++; //immediately start from the next
+            while(vis[idx % n]) idx++; 
         }
-        return (cur % n) + 1;
+
+        return (idx % n) + 1; 
     }
 }
 
