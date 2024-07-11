@@ -1,6 +1,6 @@
 class Solution {
     public String reverseParentheses(String s) {
-        Deque<String> stack = new LinkedList<String>();
+        Stack<String> stack = new Stack<>();
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
