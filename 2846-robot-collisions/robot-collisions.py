@@ -3,24 +3,23 @@ class Solution:
         n = len(positions)
         bots_info = sorted(zip(range(n), positions, healths, directions), key = lambda self:self[1])
         to_left = []
-        stack = []
+        to_right = [] 
         for i, p, h, d in bots_info:
             if d == "R":
-                stack.append([i,h])
+                to_right.append([i,h])
                 continue
-            #bot will head left for below lines
-            while stack: #collision happened, left bot as candidate
-                left = stack[-1]
+            while to_right: #collision happened, left bot as candidate
+                left = to_right[-1]
                 if left[1] > h:
                     left[1] -= 1 
                     break
                 if left[1] == h:
-                    stack.pop()
+                    to_right.pop()
                     break
                 h -= 1
-                stack.pop()
+                to_right.pop()
             else:
                 to_left.append([i,h])
-        stack += to_left
-        stack.sort(key = lambda self:self[0])
-        return [h for idx, h in stack]
+        to_right += to_left
+        to_right.sort(key = lambda self:self[0])
+        return [h for idx, h in to_right]
