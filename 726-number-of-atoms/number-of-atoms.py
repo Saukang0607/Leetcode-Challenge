@@ -55,4 +55,3 @@ class Solution:
             else:
                 ans.append(key)
         return "".join(ans)
-
