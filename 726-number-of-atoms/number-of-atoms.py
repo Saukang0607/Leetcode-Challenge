@@ -42,14 +42,13 @@ class Solution:
                 i = j
                 s.append(cur)
 
-        print(map)
-        combined_map = defaultdict(lambda: 0)
+        combined_map = defaultdict(lambda: 0) #merge the same atom with different index
         for key, cnt in map.items():
             atom = key.split("_")[0]
             combined_map[atom] += cnt
         
         ans = []
-        for key in sorted(combined_map.keys()):
+        for key in sorted(combined_map.keys()): #sort and return the answer
             cnt = combined_map[key]
             if cnt > 1:
                 ans.append(key + str(cnt))
