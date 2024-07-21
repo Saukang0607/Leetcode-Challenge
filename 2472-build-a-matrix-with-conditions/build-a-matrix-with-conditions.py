@@ -7,14 +7,14 @@ class Solution:
                 out_deg_set[x-1].append(y-1)
                 in_deg[y-1] += 1
             order = []
-            queue = deque(i for i, _ in enumerate(in_deg) if _ == 0) #the elements that will stay on top/left
+            queue = deque(i for i, _ in enumerate(in_deg) if _ == 0) #the elements that will stay on top/left 
             while queue:
                 element = queue.popleft()
-                order.append(element)
+                order.append(element) 
                 for out in out_deg_set[element]:
                     in_deg[out] -= 1
                     if in_deg[out] == 0:
-                        queue.append(out)
+                        queue.append(out) #the element that has most in degree will be in last order
             
             if len(order) == k:
                 return order
