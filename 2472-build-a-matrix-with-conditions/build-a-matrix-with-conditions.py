@@ -24,7 +24,7 @@ class Solution:
         col_order = topo_sort(colConditions)
         if row_order is None or col_order is None: #there is a cycle in topological order, answer didn't exist
             return []
-        pos = {x:i for i, x in enumerate(col_order)} #dictionary of value:index
+        pos = {x:i for i, x in enumerate(col_order)} #dictionary of column value: column index
         ans = [[0] * k for _ in range(k)]
         for i, x in enumerate(row_order):
             ans[i][pos[x]] = x+1
