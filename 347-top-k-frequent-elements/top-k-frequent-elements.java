@@ -17,7 +17,7 @@ class Solution {
                 continue;
             }
 
-            if (queue.peek() != null && map.get(num) > map.get(queue.peek())) {
+            if (map.get(num) > map.get(queue.peek())) {
                 queue.poll();
                 queue.add(num);
             }
