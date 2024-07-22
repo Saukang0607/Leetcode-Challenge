@@ -29,6 +29,3 @@ class Solution:
         for i, x in enumerate(row_order):
             ans[i][pos[x]] = x+1
         return ans
-
-
-        
