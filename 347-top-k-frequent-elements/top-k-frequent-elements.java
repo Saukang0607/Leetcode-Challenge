@@ -7,11 +7,19 @@ class Solution {
         }
 
         Queue<Integer> queue = new PriorityQueue<>(Comparator.comparing(map::get));
-
+        
+        int counter = 0;
+        System.out.println(map);
         for (Integer num : map.keySet()) {
-            queue.add(num);
-            if (queue.size() > k) {
+            if(counter < k){
+                queue.add(num);
+                counter++;
+                continue;
+            }
+
+            if (queue.peek() != null && map.get(num) > map.get(queue.peek())) {
                 queue.poll();
+                queue.add(num);
             }
         }
 
