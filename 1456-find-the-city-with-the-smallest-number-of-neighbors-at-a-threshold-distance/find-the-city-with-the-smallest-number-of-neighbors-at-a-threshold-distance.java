@@ -2,7 +2,7 @@ class Solution {
     public int findTheCity(int n, int[][] edges, int distanceThreshold) {
         int[][] w = new int[n][n]; //total weight from i to j
         for(int[] row : w){
-            Arrays.fill(row, Integer.MAX_VALUE / 2);
+            Arrays.fill(row, 10001);
         }
 
         for(int[] edge : edges){
@@ -12,7 +12,7 @@ class Solution {
 
         int[][][] memo = new int[n][n][n];
         int ans = 0;
-        int min_count = n;
+        int min_count = n - 1;
 
         for(int i = 0; i < n; i++){
             int cnt = 0;
