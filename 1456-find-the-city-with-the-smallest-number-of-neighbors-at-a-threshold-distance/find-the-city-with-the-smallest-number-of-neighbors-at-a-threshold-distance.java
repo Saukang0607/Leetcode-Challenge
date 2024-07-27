@@ -2,12 +2,13 @@ class Solution {
     public int findTheCity(int n, int[][] edges, int distanceThreshold) {
         int[][] w = new int[n][n]; //total weights from city i to city j
         for(int[] row : w){
-            Arrays.fill(row, 10001); //since weighti, distanceThreshold <= 10^4
+            Arrays.fill(row, Integer.MAX_VALUE / 2); //see next comment
         }
 
         for(int[] edge : edges){
             int x = edge[0], y = edge[1], weight = edge[2];
-            w[x][y] = w[y][x] = weight;
+            w[x][y] = w[y][x] = weight; //distance of Inf / 2 means city x is not reachable to city y
+            //divide by 2 to prevent overflow
         }
 
         int[][][] memo = new int[n][n][n]; //for memoization search
